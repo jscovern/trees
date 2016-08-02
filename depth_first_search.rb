@@ -47,11 +47,9 @@ class Tree
     end
 
     while(searchStack.length > 0) do
-      currItem=searchStack.last
       if currItem.key === target_key
         return currItem
       end  
-    puts "curr item is #{currItem.key}"
       while(currItem.children.length > 0) do
         searchStack.concat(currItem.children.flatten)
         currItem = searchStack.last
@@ -62,7 +60,7 @@ class Tree
         searchStackText << node.key
       end
       puts "Search Stack: #{searchStackText}"
-      searchStack.pop
+      currItem = searchStack.pop
     end
     return nil
   end
