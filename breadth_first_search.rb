@@ -37,7 +37,32 @@ class Tree
   # outward from the root. Looks for any node with key equal
   # to the +target_key+ param. Returns nil if no such node is found.
   def breadth_first_search(target_key)
-    nil
+    searchQueue = []
+    childrenArray = []
+    puts @key
+    if @key == target_key
+        return self
+    else
+      childrenArray = @children.flatten
+      searchQueue.concat(childrenArray)
+    end
+
+    while searchQueue.length>0 do
+      searchQueueKeys=""
+      searchQueue.each do |node| #this is only here so I can print out the search queue keys only, for ease of viewing
+        searchQueueKeys << node.key
+      end
+      puts "search queue: #{searchQueueKeys}"
+
+      currElement = searchQueue.shift
+      puts "current element is #{currElement.key}"
+      if currElement.key == target_key
+        return currElement
+      else
+        searchQueue.concat(currElement.children.flatten)
+      end
+    end
+    return nil
   end
 
 end

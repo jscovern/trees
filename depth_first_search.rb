@@ -38,10 +38,42 @@ class Tree
   # by following each path as deep as it can before backtracking.
   # Returns nil if no such node is found.
   def depth_first_search(target_key)
-    nil
-  end
+    searchStack=[]
+    if @key === target_key
+      return self
+    else
+      searchStack.push(self)
+      currItem = searchStack.last
+    end
 
+    while(searchStack.length > 0) do
+      currItem=searchStack.last
+      if currItem.key === target_key
+        return currItem
+      end  
+    puts "curr item is #{currItem.key}"
+      while(currItem.children.length > 0) do
+        searchStack.concat(currItem.children.flatten)
+        currItem = searchStack.last
+      end
+
+      searchStackText=""
+      searchStack.each do |node|
+        searchStackText << node.key
+      end
+      puts "Search Stack: #{searchStackText}"
+      searchStack.pop
+    end
+    return nil
+  end
 end
+#          T 
+#        /
+#     R  -- U -- W
+#   /   \
+# Q        V
+#   \
+#     S 
 
 
 my_tree = Tree.new('Q')
@@ -59,13 +91,6 @@ r_node.children << u_node
 r_node.children << v_node
 u_node.children << w_node
 
-#          T 
-#        /
-#     R  -- U -- W
-#   /   \
-# Q        V
-#   \
-#     S 
 
 puts "\n-- expect node U --"
 u_result = my_tree.depth_first_search('U')

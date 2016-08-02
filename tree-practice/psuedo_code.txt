@@ -1,0 +1,41 @@
+Breadth First:
+check if my_tree.key=target_key
+if equal return my_tree
+else add my_tree.children to the search queue
+while queue is not empty
+	get first element in queue (shift) and make that curr element
+	check if current element = target
+		if so, return curr element
+		if not, push children to queue
+	end the if
+move to the next item in while if queue isn't empty
+if the queue is empty, it's not in the data
+
+Depth First:
+check if my_tree root node is your target
+if so, return root element
+if not
+	add my_tree root node to stack (push)
+	my_tree root node is curr element
+		while(last item in stack has children)
+			add in all children of curr element (push)
+		end while once no children
+		check if last element in stack (pop from stack) is your target element - if so, return it, if not, return to the while loop
+
+
+
+
+class pseudocode Depth First:
+define a variable for our stack
+check if my_tree.key==target_key
+	if yes return my_tree
+	if no push my_tree.children to stack
+while stack is not empty
+	currentelement=stack.pop
+	check curr elem.key==targetkey
+	if yes
+		return curr element
+	if no
+		push currentelement.children
+end
+if stack empty element not in tree return nil 
